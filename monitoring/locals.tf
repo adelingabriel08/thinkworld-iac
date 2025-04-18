@@ -7,7 +7,7 @@ locals {
   suffix                 = "${local.product_short_code}-${local.lifecycle}-${var.environment}"
   storage_account_suffix = "st${replace(local.suffix, "-", "")}"
   location               = "uksouth"
-  tags                   = {
+  tags = {
     environment = var.environment
     product     = local.product
   }

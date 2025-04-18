@@ -1,6 +1,6 @@
 locals {
-  product                     = "ThinkWorld"
-  product_short_code          = "tw"
+  product            = "ThinkWorld"
+  product_short_code = "tw"
 
   # These values are either constants or calculated values. They don't need to be changed.
   lifecycle                   = "net"
@@ -8,7 +8,7 @@ locals {
   storage_account_suffix      = "st${replace(local.suffix, "-", "")}"
   location                    = "uksouth"
   monitoring_lifecycle_suffix = "${local.product_short_code}-mon-${var.environment}"
-  tags                   = {
+  tags = {
     environment = var.environment
     product     = local.product
   }

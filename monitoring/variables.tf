@@ -12,4 +12,5 @@ variable "environment" {
     )
     error_message = "Environment must be either 'dev', 'test' or 'prod'."
   }
+  default = "dev"
 }
