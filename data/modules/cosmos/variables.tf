@@ -28,7 +28,13 @@ variable "resource_group" {
   type = string
 }
 
-variable "replication_locations" {
-  type = list(string)
-  default = []
+variable "replication_networks" {
+  type = map(object(
+    {
+      suffix         = string
+      location       = string
+      location_short = string
+    }
+  ))
+  default = {}
 }
