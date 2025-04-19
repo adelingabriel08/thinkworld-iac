@@ -13,6 +13,6 @@ variable "environment" {
 variable "replication_regions" {
   description = "The list of other regions to replicate to."
   type        = set(string)
-  default     = ["eastus"]
+  default     = ["eastus2"]
 }
 

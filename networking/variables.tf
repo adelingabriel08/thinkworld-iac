@@ -7,7 +7,7 @@ variable "location" {
 variable "secondary_location" {
   type        = string
   description = "The location of the resources"
-  default     = "eastus"
+  default     = "eastus2"
 }
 
 variable "environment" {
@@ -19,12 +19,12 @@ variable "environment" {
 variable "primary_region_vnet_address_space" {
   description = "The region specific vnet address space for the primary region."
   type        = list(string)
-  default     = ["10.0.1.0/27", "10.0.2.0/28"]
+  default     = ["10.0.1.0/26", "10.0.2.0/27"]
 }
 
 variable "secondary_region_vnet_address_space" {
   description = "The region specific vnet address space for the secondary region, if not provided the secondary region will not be built."
   type        = list(string)
-  default     = ["10.1.1.0/27", "10.1.2.0/28"]
+  default     = ["10.1.1.0/26", "10.1.2.0/27"]
   nullable    = true
 }
