@@ -17,6 +17,10 @@ resource "azurerm_linux_web_app" "global" {
   location                  = azurerm_service_plan.main.location
   service_plan_id           = azurerm_service_plan.main.id
   virtual_network_subnet_id = data.azurerm_subnet.app_integration.id
+  
+  identity {
+    type = "SystemAssigned"
+  }
 
 
   site_config {}
@@ -29,6 +33,10 @@ resource "azurerm_linux_web_app" "router" {
   service_plan_id           = azurerm_service_plan.main.id
   virtual_network_subnet_id = data.azurerm_subnet.app_integration.id
 
+  identity {
+    type = "SystemAssigned"
+  }
+
 
   site_config {}
 }
@@ -39,6 +47,10 @@ resource "azurerm_linux_web_app" "pii" {
   location                  = azurerm_service_plan.main.location
   service_plan_id           = azurerm_service_plan.main.id
   virtual_network_subnet_id = data.azurerm_subnet.app_integration.id
+
+  identity {
+    type = "SystemAssigned"
+  }
 
 
   site_config {}
@@ -53,6 +65,10 @@ resource "azurerm_linux_function_app" "global" {
   storage_account_name       = azurerm_storage_account.functions_storage.name
   storage_account_access_key = azurerm_storage_account.functions_storage.primary_access_key
 
+  identity {
+    type = "SystemAssigned"
+  }
+
   site_config {}
 
   depends_on = [ azurerm_storage_account.functions_storage ]
@@ -66,6 +82,10 @@ resource "azurerm_linux_function_app" "pii" {
   virtual_network_subnet_id  = data.azurerm_subnet.app_integration.id
   storage_account_name       = azurerm_storage_account.functions_storage.name
   storage_account_access_key = azurerm_storage_account.functions_storage.primary_access_key
+
+  identity {
+    type = "SystemAssigned"
+  }
 
   site_config {}
 
