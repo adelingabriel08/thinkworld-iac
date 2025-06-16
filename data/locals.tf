@@ -33,4 +33,23 @@ locals {
       location_short = module.azure_region[index].location_short
     }
   }
+
+  # Combine primary and replica PII Cosmos DBs into a single for_each
+  all_pii_cosmos_networks = merge(
+    {
+      primary = {
+        suffix         = "${local.suffix}-pii-${module.azure_primary_region.location_short}"
+        network        = local.region_network
+        private_dns_zone_resource_group_name = "rg-${local.region_network.suffix}"
+      }
+    },
+    {
+      for k, v in local.replication_networks :
+      k => {
+        suffix         = "${local.suffix}-pii-${v.location_short}"
+        network        = v
+        private_dns_zone_resource_group_name = "rg-${v.suffix}"
+      }
+    }
+  )
 }

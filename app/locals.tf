@@ -14,7 +14,7 @@ locals {
 
   # Subscription Level
   monitoring_lifecycle_suffix = "${local.product_short_code}-mon-${var.environment}"
-  data_lifecycle_suffix       = "${local.product_short_code}-data-${var.environment}"
+  data_lifecycle_preffix       = "${local.product_short_code}-data-${var.environment}"
 
   networks = {
     for index, region in var.deployment_regions :

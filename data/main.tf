@@ -5,20 +5,21 @@ resource "azurerm_resource_group" "main" {
 }
 
 resource "azurerm_resource_group" "pii" {
-  name     = "rg-${local.region_suffix}"
-  location = local.region_network.location
+  for_each = local.all_pii_cosmos_networks
+  name     = "rg-${each.value.suffix}"
+  location = each.value.network.location
   tags     = local.tags
 }
 
-
 module "pii_cosmos" {
+  for_each = local.all_pii_cosmos_networks
   source = "./modules/cosmos"
 
-  resource_group                       = azurerm_resource_group.pii.name
-  suffix                               = "${local.suffix}-pii-${module.azure_primary_region.location_short}"
-  network                              = local.region_network
+  resource_group                       = "rg-${each.value.suffix}"
+  suffix                               = each.value.suffix
+  network                              = each.value.network
   database_name                        = "ThinkWorldPII"
-  private_dns_zone_resource_group_name = "rg-${local.region_network.suffix}"
+  private_dns_zone_resource_group_name = each.value.private_dns_zone_resource_group_name
   tags                                 = local.tags
 
   depends_on = [ azurerm_resource_group.pii ]
