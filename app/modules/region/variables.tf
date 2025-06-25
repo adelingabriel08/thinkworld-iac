@@ -53,3 +53,24 @@ variable "router_tm_profile_id" {
   description = "The resource ID of the router Traffic Manager profile."
   type        = string
 }
+
+variable "global_cosmos_db_rg" {
+  description = "Resource group name for the global Cosmos DB account"
+  type        = string
+}
+
+variable "global_cosmos_db_account" {
+  description = "Account name for the global Cosmos DB account"
+  type        = string
+}
+
+variable "router_cosmos_db_rg" {
+  description = "Resource group name for the router Cosmos DB account"
+  type        = string
+}
+
+variable "router_cosmos_db_account" {
+  description = "Account name for the router Cosmos DB account"
+  type        = string
+}
+

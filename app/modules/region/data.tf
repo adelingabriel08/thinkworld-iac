@@ -8,3 +8,5 @@ data "azurerm_cosmosdb_account" "pii" {
   name                = "cosno-${var.data_lifecycle_preffix}-pii-${var.network.location_short}"
   resource_group_name = "rg-${var.data_lifecycle_preffix}-pii-${var.network.location_short}"
 }
+
+data "azurerm_client_config" "current" {}
